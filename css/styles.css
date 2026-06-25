@@ -4,3 +4,13 @@
     gap: 1rem;
     justify-content: center;
 }
+
+.tarjeta {
+    border: 1px solid #000000;
+    padding: 1rem;
+    width: 180px;
+    background: chartreuse;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

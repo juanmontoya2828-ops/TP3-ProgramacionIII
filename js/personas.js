@@ -14,7 +14,7 @@ form.addEventListener("submit", (e) => {
     let altura = parseFloat(document.getElementById("altura").value);
     const peso = parseFloat(document.getElementById("peso").value);
 
-    // Si la altura es mayor a 3, asumimos que está en centímetros
+    // Si el numero ingresado en altura es mayor a 3 se da por echo que esta en centimetros
     if (altura > 3) {
         altura = altura / 100;
     }
@@ -36,4 +36,9 @@ form.addEventListener("submit", (e) => {
     tabla.appendChild(fila);
 
     form.reset();
+});
+tabla.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btnEliminar")) {
+        e.target.closest("tr").remove();
+    }
 });

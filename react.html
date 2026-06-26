@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - React</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.20.7/babel.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="flexbox.html">Ejercicio 1</a>
+        <a href="personas.html">Ejercicio 2</a>
+    </nav>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { useState } = React;
+
+        function App() {
+            const [personas, setPersonas] = useState([]);
+            const [form, setForm] = useState({ nombre:"", apellido:"", edad:"", altura:"", peso:"" });
+
+            const agregar = e => {
+                e.preventDefault();
+                const alturaM = form.altura > 3 ? form.altura / 100 : form.altura;
+                const imc = (form.peso / (alturaM * alturaM)).toFixed(2);
+                setPersonas([...personas, { ...form, id: Date.now(), imc }]);
+                setForm({ nombre:"", apellido:"", edad:"", altura:"", peso:"" });
+            };
+
+            const eliminar = id => setPersonas(personas.filter(p => p.id !== id));
+
+            return (
+                <div>
+                    <h1>Ejercicio 3: Personas (React)</h1>
+                    <h2>Cargar personas</h2>
+
+                    <form onSubmit={agregar}>
+                        {["Nombre","Apellido","Edad","Altura (m)","Peso (kg)"].map(campo => (
+                            <input
+                                key={campo}
+                                placeholder={campo}
+                                type={campo === "edad" || campo === "altura" || campo === "peso" ? "number" : "text"}
+                                value={form[campo]}
+                                onChange={e => setForm({ ...form, [campo]: e.target.value })}
+                                required
+                            />
+                        ))}
+                        <button>Agregar</button>
+                    </form>
+
+                    <h2>Personas cargadas</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th><th>Apellido</th><th>Edad</th>
+                                <th>Altura</th><th>Peso</th><th>IMC</th><th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {personas.map(p => (
+                                <tr key={p.id}>
+                                    <td>{p.nombre}</td>
+                                    <td>{p.apellido}</td>
+                                    <td>{p.edad}</td>
+                                    <td>{p.altura}</td>
+                                    <td>{p.peso}</td>
+                                    <td>{p.imc}</td>
+                                    <td><button onClick={() => eliminar(p.id)}>Eliminar</button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+    </script>
+
+</body>
+</html>

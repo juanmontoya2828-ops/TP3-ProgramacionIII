@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Ejercicio 3 - React</title>
@@ -11,6 +12,7 @@
 
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
     <nav>
@@ -27,15 +29,24 @@
 
         function App() {
             const [personas, setPersonas] = useState([]);
-            const [form, setForm] = useState({ nombre:"", apellido:"", edad:"", altura:"", peso:"" });
+            const [form, setForm] = useState({ nombre: "", apellido: "", edad: "", altura: "", peso: "" });
 
             const agregar = e => {
                 e.preventDefault();
-                const alturaM = form.altura > 3 ? form.altura / 100 : form.altura;
-                const imc = (form.peso / (alturaM * alturaM)).toFixed(2);
-                setPersonas([...personas, { ...form, id: Date.now(), imc }]);
-                setForm({ nombre:"", apellido:"", edad:"", altura:"", peso:"" });
+
+                const alturaNum = parseFloat(form.altura);
+                const pesoNum = parseFloat(form.peso);
+
+                // Convertir altura tipo Ejercicio 2: 177 → 1.77
+                const alturaM = alturaNum > 3 ? alturaNum / 100 : alturaNum;
+
+                const imc = (pesoNum / (alturaM * alturaM)).toFixed(2);
+
+                setPersonas([...personas, { ...form, altura: alturaM, peso: pesoNum, id: Date.now(), imc }]);
+
+                setForm({ nombre: "", apellido: "", edad: "", altura: "", peso: "" });
             };
+
 
             const eliminar = id => setPersonas(personas.filter(p => p.id !== id));
 
@@ -43,27 +54,51 @@
                 <div>
                     <h1>Ejercicio 3: Personas (React)</h1>
                     <h2>Cargar personas</h2>
-
                     <form onSubmit={agregar}>
-                        {["Nombre","Apellido","Edad","Altura (m)","Peso (kg)"].map(campo => (
-                            <input
-                                key={campo}
-                                placeholder={campo}
-                                type={campo === "edad" || campo === "altura" || campo === "peso" ? "number" : "text"}
-                                value={form[campo]}
-                                onChange={e => setForm({ ...form, [campo]: e.target.value })}
-                                required
-                            />
-                        ))}
+                        <input
+                            placeholder="Nombre"
+                            type="text"
+                            value={form.nombre}
+                            onChange={e => setForm({ ...form, nombre: e.target.value })}
+                            required
+                        />
+                        <input
+                            placeholder="Apellido"
+                            type="text"
+                            value={form.apellido}
+                            onChange={e => setForm({ ...form, apellido: e.target.value })}
+                            required
+                        />
+                        <input
+                            placeholder="Edad"
+                            type="number"
+                            value={form.edad}
+                            onChange={e => setForm({ ...form, edad: e.target.value })}
+                            required
+                        />
+                        <input
+                            placeholder="Altura (m)"
+                            type="number"
+                            value={form.altura}
+                            onChange={e => setForm({ ...form, altura: e.target.value })}
+                            required
+                        />
+                        <input
+                            placeholder="Peso (kg)"
+                            type="number"
+                            value={form.peso}
+                            onChange={e => setForm({ ...form, peso: e.target.value })}
+                            required
+                        />
                         <button>Agregar</button>
                     </form>
 
-                    <h2>Personas cargadas</h2>
+                    <h2>Personas Cargadas</h2>
                     <table>
                         <thead>
                             <tr>
                                 <th>Nombre</th><th>Apellido</th><th>Edad</th>
-                                <th>Altura</th><th>Peso</th><th>IMC</th><th>Acciones</th>
+                                <th>Altura (m)</th><th>Peso (kg)</th><th>IMC</th><th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,4 +124,5 @@
     </script>
 
 </body>
+
 </html>

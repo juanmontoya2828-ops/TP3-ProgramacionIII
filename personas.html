@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Personas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Ejercicio 2: Personas</h1>
+        <nav>
+            <a href="index.html">Volver al inicio</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Cargar persona</h2>
+
+            <form id="formPersona">
+                <input type="text" id="nombre" placeholder="Nombre" required>
+                <input type="text" id="apellido" placeholder="Apellido" required>
+                <input type="number" id="edad" placeholder="Edad" required>
+                <input type="number" id="altura" placeholder="Altura (m)" step="0.01" required>
+                <input type="number" id="peso" placeholder="Peso (kg)" required>
+                <button type="submit">Agregar</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Personas cargadas</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Altura</th>
+                        <th>Peso</th>
+                        <th>IMC</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tablaPersonas"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="js/personas.js"></script>
+</body>
+
+</html>

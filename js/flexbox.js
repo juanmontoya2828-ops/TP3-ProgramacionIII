@@ -1,8 +1,8 @@
 // Arreglo de 6 productos 
 const productos = [
     { nombre: "Café", precio: 1200 },
-    { nombre: "Tostado", precio: 900 },
-    { nombre: "Jugo", precio: 700 },
+    { nombre: "Licuado de Banana", precio: 3000 },
+    { nombre: "Jugo de Naranja", precio: 700 },
     { nombre: "Medialuna", precio: 800 },
     { nombre: "Budín", precio: 2500 },
     { nombre: "Galletas", precio: 3300 }

@@ -1,3 +1,10 @@
+/* Background para todas las páginas */
+body {
+    background: gray;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
 .flex-contenedor {
     display: flex;
     flex-wrap: wrap;
@@ -9,8 +16,34 @@
     border: 1px solid #000000;
     padding: 1rem;
     width: 180px;
-    background: chartreuse;
+    background: orange;
     border-radius: 6px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+form input {
+    margin: 0.3rem;
+    padding: 0.4rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+button {
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
 }

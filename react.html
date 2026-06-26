@@ -30,26 +30,30 @@
                 const alturaNum = parseFloat(form.altura);
                 const pesoNum = parseFloat(form.peso);
 
-                // Convertir altura tipo Ejercicio 2: 177 → 1.77
+                // Convertir altura tipo Ejercicio 2: 177 = 1.77
                 const alturaM = alturaNum > 3 ? alturaNum / 100 : alturaNum;
 
+                // Calcular IMC con altura procesada
                 const imc = (pesoNum / (alturaM * alturaM)).toFixed(2);
 
+                // Agregar persona a la lista
                 setPersonas([...personas, { ...form, altura: alturaM, peso: pesoNum, id: Date.now(), imc }]);
 
+                // Limpiar formulario
                 setForm({ nombre: "", apellido: "", edad: "", altura: "", peso: "" });
             };
 
 
+            // Eliminar persona por ID
             const eliminar = id => setPersonas(personas.filter(p => p.id !== id));
 
             return (
                 <div>
                     <h1>Ejercicio 3: Personas (React)</h1>
 
-                    <nav>
-                        <a href="index.html">Volver al Inicio</a>
-                    </nav>
+        <div class="menu-ejercicios">
+            <a href="index.html">Volver al Inicio</a>
+        </div>
 
                     <h2>Cargar personas</h2>
 
